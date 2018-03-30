@@ -2,16 +2,19 @@
 
 set -euo pipefail
 
-coverageFile="coverage.txt"
-profileFile="profile.out"
+coverageFile="c.out"
+coveragePartialFile="c.partial"
 
-echo "" > ${coverageFile}
+if [[ -f ${coverageFile} ]]; then
+	rm ${coverageFile}
+fi
+touch ${coverageFile}
 
 for d in $(go list ./... | grep -v vendor); do
-    go test -race -coverprofile=${profileFile} -covermode=atomic ${d}
+    go test -coverprofile=${coveragePartialFile} -covermode=atomic ${d}
 
-    if [[ -f ${profileFile} ]]; then
-        cat ${profileFile} >> ${coverageFile}
-        rm ${profileFile}
+    if [[ -f ${coveragePartialFile} ]]; then
+        cat ${coveragePartialFile} >> ${coverageFile}
+        rm ${coveragePartialFile}
     fi
 done
