@@ -4,6 +4,5 @@ Go package and cli for generating Terraform config from a Terraform state file.
 
 # Usage
 
-    cd cmd/terraconf
-    go install
+    go install github.com/jzbruno/terraconf/cmd/terraconf
     terraconf <state-file>
