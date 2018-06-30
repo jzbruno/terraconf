@@ -55,6 +55,10 @@ func tfStringValue(i interface{}) string {
 func tfAttributeValue(name, i interface{}) string {
 	rawType := reflect.TypeOf(i)
 
+	if name == "*" {
+		name = tfStringValue(name)
+	}
+
 	s := ""
 
 	switch rawType.Kind() {

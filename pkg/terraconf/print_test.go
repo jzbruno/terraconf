@@ -239,6 +239,13 @@ func Test_tfAttributeValue(t *testing.T) {
 			}},
 			"test {\nfour {\none = \"1\"\ntwo = \"2\"\n}\none = \"1\"\nthree = [\n\"1\",\n\"2\",\n\"3\",\n]\ntwo = \"2\"\n}\n",
 		},
+		{
+			"should return tf string with quoted key for map with key of *",
+			args{"test", map[string]interface{}{
+				"*": 0,
+			}},
+			"test {\n\"*\" = \"0\"\n}\n",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
