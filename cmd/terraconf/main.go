@@ -25,8 +25,9 @@ func main() {
 
 	// Ugh, when reading state Terraform displays a message about lineage.
 	log.SetOutput(ioutil.Discard)
-
 	state, err := terraform.ReadState(f)
+	log.SetOutput(os.Stdout)
+
 	if err != nil {
 		log.Fatalf("Failed to read state file, err='%s'", err)
 	}
