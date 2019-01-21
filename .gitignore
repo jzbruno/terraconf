@@ -1,4 +1,7 @@
 .idea/
 coverage.*
 *.out
+.terraform/
+*.tfstate*
+main.tf
 terraconf
