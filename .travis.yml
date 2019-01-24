@@ -7,6 +7,6 @@ install:
 before_script:
 - test-reporter before-build
 script:
-- "./test.sh"
+- go test -coverprofile=c.out -covermode=atomic $(go list ./... | grep -v vendor)
 after_script:
 - test-reporter after-build --coverage-input-type gocov --exit-code $TRAVIS_TEST_RESULT
